@@ -1,6 +1,4 @@
 import { Store } from 'vuex';
-// import authServices from '~/services/auth.service';
-// import tokenService from '~/services/token.service';
 
 const createStore = () => {
   return new Store({
