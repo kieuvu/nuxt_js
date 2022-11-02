@@ -13,8 +13,13 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' }
+      { rel: 'stylesheet', href: 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' },
+      { rel: 'stylesheet', href: '/assets/style/main.css' }
     ],
+
+    script: [
+      { src: "/assets/js/main.js", defer: true }
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -61,13 +66,21 @@ export default {
   },
 
   auth: {
+    redirect: {
+      logout: '/login',
+    },
     strategies: {
       local: {
+        scheme: 'refresh',
         token: {
           property: 'access_token',
           name: 'Authorization',
           type: 'Bearer',
           global: true,
+        },
+        refreshToken: {
+          property: 'refresh_token',
+          data: 'Refreshtoken',
         },
         user: {
           property: false,
@@ -76,7 +89,8 @@ export default {
         endpoints: {
           login: { url: 'login', method: 'post' },
           logout: { url: 'logout', method: 'get' },
-          user: { url: 'user', method: 'get' }
+          user: { url: 'user', method: 'get' },
+          refresh: { url: '/refreshtoken', method: 'post' },
         },
       },
     },
