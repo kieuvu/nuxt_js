@@ -79,10 +79,12 @@ export default {
           name: 'Authorization',
           type: 'Bearer',
           global: true,
+          maxAge: false,
         },
         refreshToken: {
           property: 'refresh_token',
           data: 'Refreshtoken',
+          maxAge: false,
         },
         user: {
           property: false,
