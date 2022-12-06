@@ -1,5 +1,5 @@
 export default function (context) {
-  if (context.$auth.loggedIn) {
+  if (context.store.getters.loggingUser) {
     return context.redirect('/');
   }
 }

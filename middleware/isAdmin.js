@@ -1,5 +1,5 @@
 export default function (context) {
-  if (context.$auth.$state.user.department !== 'admin') {
+  if (context.store.getters.loggingUser && context.store.getters.loggingUser.details.user.department !== 'admin') {
     return context.redirect('/');
   }
 }

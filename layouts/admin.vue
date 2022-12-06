@@ -36,7 +36,7 @@
               class="btn btn-info navbar-btn"
               @click="logout()"
             >
-              {{ $store.$auth.$state.user.email }}
+              {{loggingUser && loggingUser.details.user.email }}
               <i class="bx bx-log-out"></i>
             </button>
           </div>
@@ -48,16 +48,24 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
+  middleware: ['isAuth', 'isAdmin'],
+
   data() {
     return {
       isSideBarOpen: true,
     }
   },
 
+  computed:{
+    ...mapGetters(["loggingUser"]),
+  },
+
   methods: {
     async logout() {
-      await this.$store.dispatch('logout', this.loginData)
+      await this.$store.dispatch('logout')
     },
   },
 }

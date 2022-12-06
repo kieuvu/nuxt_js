@@ -50,7 +50,7 @@ export default {
 
     '@nuxtjs/dotenv',
 
-    '@nuxtjs/auth-next',
+    'cookie-universal-nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -65,41 +65,10 @@ export default {
     },
   },
 
-  auth: {
-    redirect: {
-      logout: '/login',
-      login: '/login',
-      home: '/'
-    },
-    strategies: {
-      local: {
-        scheme: 'refresh',
-        token: {
-          property: 'access_token',
-          name: 'Authorization',
-          type: 'Bearer',
-          global: true,
-          maxAge: false,
-        },
-        refreshToken: {
-          property: 'refresh_token',
-          data: 'Refreshtoken',
-          maxAge: false,
-        },
-        user: {
-          property: false,
-          autoFetch: true,
-        },
-        endpoints: {
-          login: { url: 'login', method: 'post' },
-          logout: { url: 'logout', method: 'get' },
-          user: { url: 'user', method: 'get' },
-          refresh: { url: '/refreshtoken', method: 'post' },
-        },
-      },
-    },
-  },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  router: {
+    middleware: 'getLoggingUser'
+  }
 };

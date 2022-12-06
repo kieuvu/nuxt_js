@@ -52,7 +52,6 @@ export default {
     UserTable,
   },
   layout: 'admin',
-  middleware: ['isAdmin'],
 
   data() {
     return {
@@ -65,8 +64,8 @@ export default {
   },
 
   async fetch(context) {
-    await context.store.dispatch('fetchUserAccounts')
-    await context.store.dispatch('fetchUserDepartments')
+      await context.store.dispatch('fetchUserAccounts')
+      await context.store.dispatch('fetchUserDepartments')
   },
 
   computed: {
